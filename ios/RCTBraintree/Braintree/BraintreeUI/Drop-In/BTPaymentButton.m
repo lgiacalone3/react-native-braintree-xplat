@@ -135,7 +135,7 @@ NSString *BTPaymentButtonPaymentButtonCellIdentifier = @"BTPaymentButtonPaymentB
                              @"topBorder": self.topBorder,
                              @"bottomBorder": self.bottomBorder };
     NSDictionary *metrics = @{ @"borderWidth": @(self.theme.borderWidth) };
-    
+
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[paymentButtonsCollectionView]|"
                                                                  options:0
                                                                  metrics:metrics
@@ -240,7 +240,7 @@ NSString *BTPaymentButtonPaymentButtonCellIdentifier = @"BTPaymentButtonPaymentB
     }
 
     if ([paymentOption isEqualToString:@"PayPal"]) {
-        return [self.configuration.json[@"paypalEnabled"] isTrue];
+        return NO; // Disabling Paypal
     } else if ([paymentOption isEqualToString:@"Venmo"]) {
         // Directly from BTConfiguration+Venmo.m. Be sure to keep these files in sync! This
         // is intentionally not DRY so that BraintreeUI does not depend on BraintreeVenmo.
@@ -298,7 +298,7 @@ NSString *BTPaymentButtonPaymentButtonCellIdentifier = @"BTPaymentButtonPaymentB
         [[BTLogger sharedLogger] warning:@"BTPaymentButton encountered an unexpected payment option value: %@", paymentOption];
         return cell;
     }
-    
+
     cell.accessibilityLabel = paymentOption;
     paymentButton.translatesAutoresizingMaskIntoConstraints = NO;
     cell.paymentButton = paymentButton;
@@ -316,7 +316,7 @@ NSString *BTPaymentButtonPaymentButtonCellIdentifier = @"BTPaymentButtonPaymentB
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(willAppSwitch:) name:BTAppSwitchWillSwitchNotification object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didAppSwitch:) name:BTAppSwitchDidSwitchNotification object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(willProcessPaymentInfo:) name:BTAppSwitchWillProcessPaymentInfoNotification object:nil];
-        
+
         NSMutableDictionary *options = [NSMutableDictionary dictionary];
         if (self.viewControllerPresentingDelegate != nil) {
             options[BTTokenizationServiceViewPresentingDelegateOption] = self.viewControllerPresentingDelegate;
@@ -324,7 +324,7 @@ NSString *BTPaymentButtonPaymentButtonCellIdentifier = @"BTPaymentButtonPaymentB
         if (self.paymentRequest.additionalPayPalScopes != nil) {
             options[BTTokenizationServicePayPalScopesOption] = self.paymentRequest.additionalPayPalScopes;
         }
-        
+
         [[BTTokenizationService sharedService] tokenizeType:paymentOption options:options withAPIClient:self.apiClient completion:self.completion];
     } else {
         [[BTLogger sharedLogger] warning:@"BTPaymentButton encountered an unexpected payment option value: %@", paymentOption];

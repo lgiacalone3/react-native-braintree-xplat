@@ -28,10 +28,10 @@ NSString * const BTJSONErrorDomain = @"com.briantreepayments.BTJSONErrorDomain";
                                                options:NSJSONReadingAllowFragments
                                                  error:&error];
     if (error != nil) {
-        return self = [self initWithValue:error];
+        return [self initWithValue:error];
     }
 
-    return self = [self initWithValue:value];
+    return [self initWithValue:value];
 }
 
 - (instancetype)initWithValue:(id)value {
@@ -194,7 +194,7 @@ NSString * const BTJSONErrorDomain = @"com.briantreepayments.BTJSONErrorDomain";
     id key = self.value;
     NSNumber *value = mapping[key];
 
-    if (!value || ![value isKindOfClass:[NSNumber class]]) {
+    if (value == nil || ![value isKindOfClass:[NSNumber class]]) {
         return defaultValue;
     }
 
@@ -217,6 +217,10 @@ NSString * const BTJSONErrorDomain = @"com.briantreepayments.BTJSONErrorDomain";
 
 - (BOOL)isObject {
     return [self.value isKindOfClass:[NSDictionary class]];
+}
+
+- (BOOL)isBool {
+    return [self.value isEqual:@YES] || [self.value isEqual:@NO];
 }
 
 - (BOOL)isTrue {

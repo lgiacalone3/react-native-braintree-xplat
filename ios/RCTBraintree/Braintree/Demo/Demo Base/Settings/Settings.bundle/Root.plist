@@ -32,10 +32,14 @@
 				<string>Drop In</string>
 				<string>UI Components</string>
 				<string>Credit Cards - 3D Secure</string>
+				<string>3D Secure Payment Flow</string>
 				<string>Combined - Custom Button</string>
 				<string>Fraud Protection - BTDataCollector</string>
 				<string>UnionPay</string>
 				<string>PayPal Credit</string>
+				<string>iDEAL</string>
+				<string>Amex</string>
+				<string>Preferred Payment Methods</string>
 			</array>
 			<key>Values</key>
 			<array>
@@ -54,10 +58,14 @@
 				<string>BraintreeDemoDropInViewController</string>
 				<string>BraintreeDemoUIWidgetsViewController</string>
 				<string>BraintreeDemoThreeDSecureViewController</string>
+				<string>BraintreeDemoThreeDSecurePaymentFlowViewController</string>
 				<string>BraintreeDemoCustomMultiPayViewController</string>
 				<string>BraintreeDemoBTDataCollectorViewController</string>
 				<string>BraintreeDemoUnionPayViewController</string>
 				<string>BraintreeDemoPayPalCreditPaymentViewController</string>
+				<string>BraintreeDemoIdealViewController</string>
+				<string>BraintreeDemoAmexViewController</string>
+				<string>BraintreeDemoPreferredPaymentMethodsViewController</string>
 			</array>
 		</dict>
 		<dict>
@@ -77,8 +85,8 @@
 			</array>
 			<key>Titles</key>
 			<array>
-				<string>Sandbox (braintree-sample-merchant)</string>
-				<string>Production (executive-sample-merchant)</string>
+				<string>Sandbox</string>
+				<string>Production</string>
 				<string>Custom (URL on previous screen)</string>
 			</array>
 			<key>Values</key>
@@ -100,13 +108,31 @@
 		</dict>
 		<dict>
 			<key>Type</key>
-			<string>PSToggleSwitchSpecifier</string>
+			<string>PSMultiValueSpecifier</string>
 			<key>Title</key>
-			<string>Use Tokenization Key</string>
+			<string>Authorization Type</string>
+			<key>ShortTitles</key>
+			<array>
+				<string>Client Token</string>
+				<string>Tokenization Key</string>
+				<string>PayPal UAT</string>
+			</array>
 			<key>Key</key>
-			<string>BraintreeDemoUseTokenizationKey</string>
+			<string>BraintreeDemoSettingsAuthorizationTypeKey</string>
 			<key>DefaultValue</key>
-			<true/>
+			<integer>0</integer>
+			<key>Titles</key>
+			<array>
+				<string>Client Token</string>
+				<string>Tokenization Key</string>
+				<string>PayPal UAT</string>
+			</array>
+			<key>Values</key>
+			<array>
+				<integer>0</integer>
+				<integer>1</integer>
+				<integer>2</integer>
+			</array>
 		</dict>
 		<dict>
 			<key>Type</key>
